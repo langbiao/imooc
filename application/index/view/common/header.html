@@ -1,0 +1,83 @@
+<div id="header">
+    <div class="page-container" id="nav">
+        <div id="logo" class="logo">
+            <a href="/" target="_self" class="hide-text" title="莞工飞鸟">
+                莞工飞鸟
+            </a>
+        </div>
+        <button type="button" class="navbar-toggle visible-xs-block js-show-menu">
+            <i class="icon-menu">
+            </i>
+        </button>
+        <ul class="nav-item">
+            <li>
+                <a href="/" target="_self">
+                    首页
+                </a>
+            </li>
+            <li>
+                <a href="/course/list" class="program-nav " target="_self">
+                    课程
+                    <i class="icn-new">
+                    </i>
+                </a>
+            </li>
+        </ul>
+        <div id="login-area">
+            <ul class="header-unlogin clearfix">
+                <li class="header-signin">
+                    <a href="#" id="js-signin-btn">
+                        登录
+                    </a>
+                </li>
+                <li class="header-signup">
+                    <a href="#" id="js-signup-btn">
+                        注册
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class='search-warp clearfix' style='min-width: 32px; height: 60px;'>
+            <div class="search-area" data-search="top-banner">
+                <input class="search-input" value="{$keyword}" data-suggest-trigger="suggest-trigger" type="text" autocomplete="off">
+            </div>
+            <div class='showhide-search' data-show='no'>
+                <i class='icon-search'>
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bindHintBox js-bindHintBox hide">
+    <div class="pr">
+        为了账号安全，请及时绑定邮箱和手机
+        <a href="/user/setbindsns" class="ml20 color-red" target="_blank">
+            立即绑定
+        </a>
+        <button class="closeBindHint js-closeBindHint" type="button">
+        </button>
+        <div class="arrow">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.showhide-search').click(function(){
+            var _keyword = $('.search-input').val();
+            if (_keyword == '') {
+                return false;
+            }
+            window.location.href = '/course/list?keyword='+_keyword;
+        });
+        $('.search-input').keydown(function(e){
+            if (e.keyCode == 13) {
+                var _keyword = $(this).val();
+                if (_keyword == '') {
+                    return false;
+                }
+                window.location.href = '/course/list?keyword='+_keyword;
+            }
+        });
+    });
+</script>

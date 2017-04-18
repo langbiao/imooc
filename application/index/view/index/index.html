@@ -1,0 +1,390 @@
+
+{extend name='common/base'}
+
+{block name="body"}
+<link rel="stylesheet" href="__STATIC__/index/css/base.css" type="text/css" />
+<div class="bk">
+</div>
+<div class="g-banner pr">
+    <div class="menuwrap">
+    </div>
+    {volist name='data' id='vo'}
+    <div class="submenu b hide" data-id="{$key}">
+        <div class="innerBox " style="background-image: url(__STATIC__/index/images/backBg.png); background-size: 100%;">
+            <div class="subinnerBox">
+                <div class="title">
+                    分类目录
+                </div>
+                {volist name='vo.child' id='child'}
+                <a target="_blank" href="/course/list?c={$child.sc_id}">
+                    {$child.sc_name}
+                </a>
+                {if condition="$i neq count($vo['child'])"}
+                <span class="ml10 mr10">
+                    /
+                </span>
+                {/if}
+                {/volist}
+                <div class="recomment-box">
+                    <div class="title recommend">
+                        课程推荐
+                    </div>
+                    <p>
+                        <a href="http://coding.imooc.com/class/93.html" data-track="syhd-1-1"
+                           target="_blank">
+										<span class="cate-tag">
+											实战
+										</span>
+                            Java Spring技术栈构建团购网站前后台 首门Java实战
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://coding.imooc.com/class/92.html" data-track="syhd-1-2"
+                           target="_blank">
+										<span class="cate-tag">
+											实战
+										</span>
+                            Python分布式爬虫打造搜索引擎 Scrapy精讲
+                        </a>
+                    </p>
+                    <div class="free-recom-box clearfix">
+                        <p>
+                            <a target="_blank" href="/learn/208" data-track="syhd-1-3">
+											<span class="cate-tag">
+												课程
+											</span>
+                                版本管理工具介绍—Git篇
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/volist}
+    <div class="menuContent">
+        {volist name='category' id='cat'}
+        <div class="item" data-id="{$cat.sc_id}">
+            <a href="/course/list?t={$cat.sc_id}" target="_blank">
+							<span class="group">
+								{$cat.sc_name}
+							</span>
+                <i class='icon-right2'>
+                </i>
+            </a>
+        </div>
+        {/volist}
+    </div>
+    <div class="g-banner-content">
+        <a target="_blank" href="#" class="click-help">
+        <div class="banner-slide" style="display:block;background-image: url(__STATIC__/index/images/58eb700c00012db612000460.jpg);">
+            <div class="inner">
+            </div>
+        </div>
+        </a>
+        <a target="_blank" href="#" class="click-help">
+        <div class="banner-slide" style="background-image: url(__STATIC__/index/images/58df260100018afb12000460.jpg);">
+            <div class="inner">
+            </div>
+        </div>
+        </a>
+        <a target="_blank" href="#" class="click-help">
+        <div class="banner-slide" style="background-image: url(__STATIC__/index/images/58e623d80001b46312000460.jpg);">
+            <div class="inner">
+            </div>
+        </div>
+        </a>
+        <a target="_blank" href="#" class="click-help">
+        <div class="banner-slide" style="background-image: url(__STATIC__/index/images/58e8824a0001566312000460.jpg);">
+            <div class="inner">
+            </div>
+        </div>
+        </a>
+        <a target="_blank" href="#" class="click-help">
+        <div class="banner-slide" style="background-image: url(__STATIC__/index/images/58d369440001d78812000460.jpg);">
+            <div class="inner">
+            </div>
+        </div>
+        </a>
+    </div>
+    <div class="banner-dots">
+    </div>
+    <a href="javascript:;" class="banner-anchor prev" style="display: none">
+        上一张
+    </a>
+    <a href="javascript:;" class="banner-anchor next" style="display: none">
+        下一张
+    </a>
+    <div class="cb">
+    </div>
+</div>
+
+{volist name='res' id='course'}
+<div class='container-types clearfix'>
+    <h3 class='types-title'>
+        {switch name="key" }
+        {case value="recommend"}推荐课程{/case}
+        {case value="值2"}名师课程{/case}
+        {case value="hot"}热门课程{/case}
+        {case value="new"}最新课程{/case}
+        {default /}
+        {/switch}
+        <a href='/course/list' class='types-title-more' target="_blank">
+						<span>
+							更多
+						</span>
+            <i class='imv2-arrow2_r'>
+            </i>
+        </a>
+    </h3>
+    <div class='clearfix types-content'>
+        {volist name='course' id='vo'}
+        <div class='index-card-container course-card-container container coding'>
+            <a target="_blank" class='course-card' href="/course/detail?d={$vo.sv_id}"
+               data-track="sztj-1-1">
+                <div class='course-card-top cart-color green'>
+                    <i class='imv2-war'>
+                    </i>
+                    <span>
+                        {$vo.sv_name}
+                    </span>
+                </div>
+                <div class='course-card-content'>
+                    <p title='{$vo.sv_desc}'>
+                        {$vo.sv_desc}
+                    </p>
+                    <div class='clearfix course-card-bottom'>
+                        <div class='course-card-info'>
+                            {switch name="vo.sv_level" }
+                            {case value="1"}初级{/case}
+                            {case value="2"}中级{/case}
+                            {case value="3"}高级{/case}
+                            {default /}初级
+                            {/switch}
+                        </div>
+                        <div class='course-card-price'>
+                            {$vo.sv_study_num}人在学
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class='course-card-bk' style='background-image: url(http://szimg.mukewang.com/58ca659a00017c3705400300-360-202.jpg)'
+                 ;>
+            </div>
+        </div>
+        {/volist}
+    </div>
+</div>
+{/volist}
+
+
+<div class='container-types clearfix'>
+    <h3 class='types-title'>
+        慕课精英名师推荐
+        <a href="http://coding.imooc.com" class="types-title-more" target="_blank">
+						<span>
+							更多
+						</span>
+            <i class="imv2-arrow2_r">
+            </i>
+        </a>
+    </h3>
+    <div class='lecturer-list clearfix'>
+        <a target="_blank" href='http://www.imooc.com/u/108492' class='lecturer-item'
+           data-track="syjstj-1-1">
+            <img class='lecturer-uimg' src='images/5344e6d10001867401400140-200-200.jpg'
+            />
+						<span class='lecturer-name'>
+							Scott
+						</span>
+						<span class='lecturer-title'>
+							nodejs技术专家
+						</span>
+						<span class='lecturer-p' title='是国内最早接触 Node.js 的工程师，也是最早用 Node.js 做开发的工程师之一，拥有大量 Node.js 全站开发经验，是新技术的追求者和传播者，对于课程他认真细致，有着近乎完美的追求。'>
+							是国内最早接触 Node.js 的工程师，也是最早用 Node.js 做开发的工程师之一，拥有大量 Node.js 全站开发经验，是新技术的追求者和传播者，对于课程他认真细致，有着近乎完美的追求。
+						</span>
+        </a>
+        <a target="_blank" href='http://www.imooc.com/u/315464' class='lecturer-item'
+           data-track="syjstj-1-2">
+            <img class='lecturer-uimg' src='images/58db190e0001643d02000200-200-200.jpg'
+            />
+						<span class='lecturer-name'>
+							moocer
+						</span>
+						<span class='lecturer-title'>
+							JAVA开发工程师
+						</span>
+						<span class='lecturer-p' title='曾混迹于企业应用领域，后转战电商，现奋战于互联网教育行业，转眼间已匆匆数年，喜爱技术甚于自己，至今不悔。感天地之广大，岁月之蹉跎，若能重来，仍代码。'>
+							曾混迹于企业应用领域，后转战电商，现奋战于互联网教育行业，转眼间已匆匆数年，喜爱技术甚于自己，至今不悔。感天地之广大，岁月之蹉跎，若能重来，仍代码。
+						</span>
+        </a>
+        <a target="_blank" href='http://www.imooc.com/u/2255006' class='lecturer-item'
+           data-track="syjstj-1-3">
+            <img class='lecturer-uimg' src='images/58d9c48f0001ad0304070270-200-200.jpg'
+            />
+						<span class='lecturer-name'>
+							__bobby
+						</span>
+						<span class='lecturer-title'>
+							django专家
+						</span>
+						<span class='lecturer-p' title='具有多年django开发的经验， 一直致力于通过django完成web全栈开发。 现任创业公司的CTO，无论后台开发、前端开发，还是移动端开发，一直致力于通过django和前端打造高效的全端开发技术栈。'>
+							具有多年django开发的经验， 一直致力于通过django完成web全栈开发。 现任创业公司的CTO，无论后台开发、前端开发，还是移动端开发，一直致力于通过django和前端打造高效的全端开发技术栈。
+						</span>
+        </a>
+        <a target="_blank" href='http://www.imooc.com/u/101686' class='lecturer-item'
+           data-track="syjstj-1-4">
+            <img class='lecturer-uimg' src='images/536b4d120001005f02720306-200-200.jpg'
+            />
+						<span class='lecturer-name'>
+							远人
+						</span>
+						<span class='lecturer-title'>
+							前端架构师
+						</span>
+						<span class='lecturer-p' title='国内最早一批HTML5实践者，先后就职于腾讯、人人网、小米、美团。具有丰富的海量服务前端开发经验，在慕课网拥有近20万学员，是学生眼中的明星讲师。'>
+							国内最早一批HTML5实践者，先后就职于腾讯、人人网、小米、美团。具有丰富的海量服务前端开发经验，在慕课网拥有近20万学员，是学生眼中的明星讲师。
+						</span>
+        </a>
+        <a target="_blank" href='http://www.imooc.com/u/4294850' class='lecturer-item'
+           data-track="syjstj-1-5">
+            <img class='lecturer-uimg' src='images/583f11e40001c79506400960-200-200.jpg'
+            />
+						<span class='lecturer-name'>
+							七月在夏天
+						</span>
+						<span class='lecturer-title'>
+							神秘讲师“七月”
+						</span>
+						<span class='lecturer-p' title='作为微信小程序第一波开发者，他受邀编写小程序开发书籍，不久就会出版。八年研发及团队管理经验，做过程序员、当过项目经理、技术总监、CTO的开发者，他喜欢写代码带来成就感。'>
+							作为微信小程序第一波开发者，他受邀编写小程序开发书籍，不久就会出版。八年研发及团队管理经验，做过程序员、当过项目经理、技术总监、CTO的开发者，他喜欢写代码带来成就感。
+						</span>
+        </a>
+    </div>
+</div>
+
+{/block}
+
+{block name="script"}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var $banner = $('.g-banner');
+            var $banner_ul = $('.g-banner-content');
+            var $btn = $('.banner-anchor');
+            var $btn_a = $('.banner-anchor');
+            var v_width = $banner.width();
+
+            var page = 1;
+
+            var timer = null;
+            var btnClass = null;
+
+            var page_count = $banner_ul.find('a').length; //把这个值赋给小圆点的个数
+            var banner_cir = "<span class='active'></span>";
+            for (var i = 1; i < page_count; i++) {
+                //动态添加小圆点
+                banner_cir += "<span class='active'></span>";
+            }
+            $('.banner-dots').append(banner_cir);
+
+            var cirLeft = $('.banner-dots').width() * ( - 0.5);
+            $('.banner-dots').css({
+                'marginLeft': cirLeft
+            });
+
+            function move(obj, classname) {
+                //手动及自动播放
+                if (!$banner_ul.is(':animated')) {
+
+                    if (page == page_count) {
+                        doAnimate(0);
+                        page = 1;
+                        cirMove();
+                    } else {
+                        doAnimate(page);
+                        page++;
+                        cirMove();
+                    }
+
+                }
+            }
+
+            function doAnimate(_index) {
+                console.log(_index);
+                $banner_ul.find('.banner-slide').fadeOut();
+                $banner_ul.find('.banner-slide').eq(_index).fadeIn();
+            }
+
+            function cirMove() {
+                //检测page的值，使当前的page与selected的小圆点一致
+                $('.banner-dots span').eq(page - 1).addClass('active').siblings().removeClass('active');
+            }
+
+            $banner.mouseover(function() {
+                $btn.css({
+                    'display': 'block'
+                });
+                clearInterval(timer);
+            }).mouseout(function() {
+                $btn.css({
+                    'display': 'none'
+                });
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+            }).trigger("mouseout"); //激活自动播放
+            $btn_a.mouseover(function() {
+                //实现透明渐变，阻止冒泡
+                $(this).animate({
+                            opacity: 0.6
+                        },
+                        'fast');
+                $btn.css({
+                    'display': 'block'
+                });
+                return false;
+            }).mouseleave(function() {
+                $(this).animate({
+                            opacity: 0.3
+                        },
+                        'fast');
+                $btn.css({
+                    'display': 'none'
+                });
+                return false;
+            }).click(function() {
+                //手动点击清除计时器
+                btnClass = this.className;
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+                move($(this), this.className);
+            });
+
+            $('.banner-dots span').on('click',
+                    function() {
+                        var index = $('.banner-dots span').index(this);
+                        doAnimate(index);
+                        page = index + 1;
+                        cirMove();
+                    });
+
+            $('.menuContent .item').mouseover(function() {
+                var i = $(this).index();
+                $(this).siblings().removeClass('js-menu-item-on');
+                $(this).addClass('js-menu-item-on');
+                $('.submenu').hide().eq(i).show();
+            }).mouseleave(function() {
+                $(this).siblings().removeClass('js-menu-item-on');
+                $(this).removeClass('js-menu-item-on');
+                $('.submenu').hide();
+            });
+            $('.submenu').mouseover(function() {
+                $('.submenu').hide();
+                $(this).show();
+            }).mouseleave(function() {
+                $(this).hide();
+                $('.submenu').hide();
+            });
+        });
+    </script>
+{/block}

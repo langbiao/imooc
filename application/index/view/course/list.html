@@ -1,0 +1,127 @@
+
+{extend name='common/base'}
+
+{block name="body"}
+<link rel="stylesheet" href="__STATIC__/index/css/base_list.css" type="text/css" />
+<style>
+    #logo a, .logo a{margin-top: 0px;}
+</style>
+<div class="wrap ">
+    <div class="top">
+        <div class="course-content">
+            <div class="course-nav-box">
+                <div class="course-nav-row clearfix">
+								<span class="hd l">
+									方向：
+								</span>
+                    <div class="bd">
+                        <ul class="">
+                            <li class="course-nav-item {empty name='t'}on{/empty}">
+                                <a href="/course/list">
+                                    全部
+                                </a>
+                            </li>
+                            {volist name='category' id='vo'}
+                            <li class="course-nav-item {eq name='t' value="$vo['sc_id']"}on{/eq}">
+                                <a href="/course/list?t={$vo['sc_id']}{if condition="!empty($c)"}&c={$c}{/if}{if condition="!empty($x)"}&x={$x}{/if}">
+                                    {$vo['sc_name']}
+                                </a>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+                <div class="course-nav-row clearfix">
+								<span class="hd l">
+									分类：
+								</span>
+                    <div class="bd">
+                        <ul class="">
+                            <li class="course-nav-item {empty name='c'}on{/empty}">
+                                <a href="/course/list">
+                                    全部
+                                </a>
+                            </li>
+                            {volist name='course' id='vo'}
+                            <li class="course-nav-item {eq name='c' value="$vo['sc_id']"}on{/eq}">
+                                <a href="/course/list?c={$vo['sc_id']}{if condition="!empty($t)"}&t={$t}{/if}{if condition="!empty($x)"}&x={$x}{/if}">
+                                    {$vo['sc_name']}
+                                </a>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="course-tool-bar clearfix">
+        <div class="tool-left l">
+            <a href="/course/list?x=new{if condition="!empty($t)"}&t={$t}{/if}{if condition="!empty($c)"}&c={$c}{/if}" class="sort-item {eq name='x' value='new'}active{/eq}">
+                最新
+            </a>
+            <a href="/course/list?x=hot{if condition="!empty($t)"}&t={$t}{/if}{if condition="!empty($c)"}&c={$c}{/if}" class="sort-item {eq name='x' value='hot'}active{/eq}">
+                最热
+            </a>
+            <a href="/course/list?x=score{if condition="!empty($t)"}&t={$t}{/if}{if condition="!empty($c)"}&c={$c}{/if}" class="sort-item {eq name='x' value='score'}active{/eq}">
+                评价
+            </a>
+        </div>
+    </div>
+    <div class="course-list">
+        <div class="moco-course-list">
+            <ul class="clearfix">
+                {volist name='list' id='vo'}
+                <div class='index-card-container course-card-container container '>
+                    <a target="_blank" class='course-card' href="/course/detail?d={$vo.sv_id}">
+                        <div class='course-card-top cart-color blue'>
+                            <i class='imv2-war'>
+                            </i>
+										<span>
+											{$vo.sv_name}
+										</span>
+                        </div>
+                        <div class='course-card-content'>
+                            <p title='{$vo.sv_title}'>
+                                {$vo.sv_title}
+                            </p>
+                            <div class='clearfix course-card-bottom'>
+                                <div class='course-card-info'>
+                                    {switch name="vo.sv_level" }
+                                    {case value="1"}初级{/case}
+                                    {case value="2"}中级{/case}
+                                    {case value="3"}高级{/case}
+                                    {default /}初级
+                                    {/switch}
+												<span>
+													·
+												</span>
+                                    {$vo.sv_study_num}人在学
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <img src='__STATIC__/index/images/new.png' class='course-cart-new' />
+                    <div class='course-card-bk'>
+                        <img src='__STATIC__/index/images/cover017_s.jpg' />
+                    </div>
+                </div>
+                {/volist}
+            </ul>
+        </div>
+        <div class="page">
+            {$page}
+        </div>
+    </div>
+</div>
+</div>
+
+{/block}
+
+{block name="script"}
+    <script type="text/javascript">
+
+    </script>
+{/block}

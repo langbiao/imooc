@@ -1,0 +1,332 @@
+
+{extend name='common/base'}
+
+{block name="body"}
+<link rel="stylesheet" href="__STATIC__/index/css/base_detail.css" type="text/css" />
+<style>
+    #logo a, .logo a{margin-top: 0px;}
+</style>
+<div class="course-infos">
+    <div class="w pr">
+        <div class="path">
+            <a href="/course/list">
+                课程
+            </a>
+            <i class="path-split">
+                \
+            </i>
+            <a href="/course/list?t={$category.sc_id}">
+                {$category.sc_name}
+            </a>
+            <i class="path-split">
+                \
+            </i>
+            <a href="/course/list?c={$course.sc_id}">
+                {$course.sc_name}
+            </a>
+            <i class="path-split">
+                \
+            </i>
+            <a href="javascript:void(0);">
+                <span>
+                    {$video.sv_name}
+                </span>
+            </a>
+        </div>
+        <div class="hd clearfix">
+            <h2 class="l">
+                {$video.sv_name}
+            </h2>
+        </div>
+        <div class="statics clearfix">
+            <div class="moco-btn l learn-btn green-btn red-btn">
+                <a target="_blank" href="/course/video?v={$first}" class="J-learn-course">
+                    开始学习
+                </a>
+                <em>
+                </em>
+                <i class="follow-action js-follow-action icon-star_outline {eq name='is_collect' value='1'}icon-star2{/eq}" data-id="{$video.sv_id}">
+                </i>
+            </div>
+            <div class="static-item l">
+							<span class="meta">
+								学习人数
+							</span>
+							<span class="meta-value js-learn-num">
+								{$video.sv_study_num}
+							</span>
+            </div>
+            <div class="static-item l">
+							<span class="meta">
+								难度级别
+							</span>
+							<span class="meta-value">
+								{switch name="video.sv_level" }
+                                {case value="1"}初级{/case}
+                                {case value="2"}中级{/case}
+                                {case value="3"}高级{/case}
+                                {default /}初级
+                                {/switch}
+							</span>
+                <em>
+                </em>
+            </div>
+            <div class="static-item l">
+							<span class="meta">
+								课程时长
+							</span>
+							<span class="meta-value">
+								{$video.sv_course_time}
+							</span>
+                <em>
+                </em>
+            </div>
+            <div class="static-item l score-btn">
+                <span class="meta">
+                    综合评分
+                </span>
+                <span class="meta-value">
+                    {$video.sv_score}
+                </span>
+                <em>
+                </em>
+            </div>
+            <div class="static-item l">
+                <span class="meta">
+                    点赞
+                </span>
+                <span class="meta-value">
+                    <a id="video_zan" data-id="{$video.sv_id}" style="color: white" title="赞" href="javascript:;" class="js-pl-praise list-praise post-action">
+                        <span class="icon-thumb-revert"></span>
+                    </a>
+                </span>
+                <em>
+                </em>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="course-info-main clearfix w">
+    <div class="content-wrap">
+        <div class="content">
+            <!--<div id="notice" class="clearfix">-->
+                <!--<div class="l">-->
+                    <!--<strong>-->
+                        <!--课程公告 :-->
+                    <!--</strong>-->
+                    <!--<a href="javascript:void(0)">-->
+                        <!--上传了部分编程练习参考代码-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!-- 课程公告 -->
+            <!-- 课程简介 -->
+            <div class="course-brief">
+                <p class="auto-wrap">
+                    简介：{$video.sv_desc}
+                </p>
+            </div>
+            <!-- 课程简介 end -->
+            <div class="mod-tab-menu ">
+                <ul class="course-menu clearfix">
+                    <li>
+                        <a class="ui-tabs-active {eq name='act' value='detail'}active{/eq}" id="learnOn" href="/course/detail?act=detail&d={$video.sv_id}">
+										<span>
+											章节
+										</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="ui-tabs-active {eq name='act' value='comment'}active{/eq}" href="/course/detail?act=comment&d={$video.sv_id}">
+										<span>
+											评论
+										</span>
+                        </a>
+                    </li>
+                    <!--<li><a id="qaOn" class="" href="/qa/10/t/1?page=1"><span>问答</span></a></li>-->
+                    <!--<li><a id="noteOn" class="" href="/note/10?sort=last&page=1"><span>笔记</span></a></li>-->
+                    <!-- <li><a id="wikiOn" class="" href="/wiki/10">WIKI</a></li>
+                    -->
+                </ul>
+            </div>
+            <!-- 课程面板 -->
+            {if condition="!empty(data)"}
+            <div class="mod-chapters">
+                {volist name='data' id='vo'}
+                <div class="chapter chapter-active">
+                    <h3>
+                        <span class="icon-drop_down js-close">
+                        </span>
+                        <strong>
+                            <i class="icon-chapter">
+                            </i>
+                            {$vo.name}
+                            <div class="icon-info chapter-info">
+                                <i class="icon-drop_up triangle">
+                                    <div class="chapter-introubox">
+                                        <div class="chapter-content">{$vo.title}</div>
+                                    </div>
+                                </i>
+                            </div>
+                        </strong>
+                    </h3>
+                    <ul class="video">
+                        {volist name='vo.child' id='v'}
+                        <li data-media-id="48">
+                            <a target="_blank" href='/course/video?v={$v.id}' class="J-media-item">
+                                <i class="icon-code type">
+                                </i>
+                                {$v.name}
+                                <button class="r moco-btn moco-btn-red preview-btn">
+                                    开始学习
+                                </button>
+                            </a>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+                {/volist}
+            </div>
+            {/if}
+            <!-- 发布评论 -->
+            <div id="course_note">
+                <ul class="mod-post" id="comment-list">
+                    {volist name='comments' id='vo'}
+                    <li class="post-row">
+                        <div class="media">
+                            <a href="javascript:;" target="_blank"><img src="{$vo.img}" width="40" height="40"></a>
+                        </div>
+                        <div class="bd">
+                            <div class="tit">
+                                <a href="javascript:;" target="_blank">{$vo.username}</a>
+                            </div>
+                            <p class="cnt">{$vo.content}</p>
+                            <div class="footer clearfix">
+                                <span title="创建时间" class="l timeago">时间：{$vo.addtime}</span>
+                                <a target="_blank" href="/course/video?v={$vo.from_id}" class="from">源自：{$vo.from}</a>
+                                <div class="actions r">
+                                    <a title="赞" href="javascript:;" class="js-pl-praise list-praise post-action">
+                                        <span class="icon-thumb-revert"></span>
+                                        <em>{$vo.zan}</em>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {/volist}
+                </ul>
+            </div>
+        </div>
+        <!--content end-->
+        <div class="aside r">
+            <div class="bd">
+                <div class="box mb40 js-usercard-box">
+                    <h4>
+                        讲师提示
+                    </h4>
+                    <div class="teacher-info">
+                        <a href="/u/4819931/courses?sort=publish" target="_blank">
+                            <img data-userid="4819931" class="js-usercard-dialog" src="http://img.mukewang.com/58bd260b00012b9e01800180-80-80.jpg" width="80" height="80">
+                        </a>
+                        <span class="tit">
+                            <a href="/u/4819931/courses?sort=publish" target="_blank">轩脉刃</a><i class="icon-imooc"></i>
+                        </span>
+                        <span class="job">全栈工程师</span>
+                    </div>
+                    <div class="course-info-tip">
+                        <dl class="first">
+                            <dt>
+                                课程须知
+                            </dt>
+                            <dd class="autowrap">
+                                {$video.sv_course_info}
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                老师告诉你能学到什么？
+                            </dt>
+                            <dd class="autowrap">
+                                {$video.sv_what}
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="js-recom-box">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div class="moco-modal-layer moco-tip-layer" style="display: none; top: 154px; left: 450px;"><i class="moco-icon-tick-revert"></i>
+    <span>收藏成功</span>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+    $(document).ready(function() {
+        //章节展开/收起
+        $('.mod-chapters h3').click(function(){
+            var _this = $(this).parent();
+            if (_this.hasClass('chapter-active')) {
+                _this.removeClass('chapter-active');
+            } else {
+                _this.addClass('chapter-active');
+            }
+        });
+        //章节提示
+        $('.chapter-info').mouseenter(function(){
+            $(this).find('i').show();
+        }).mouseleave(function(){
+            $(this).find('i').hide();
+        });
+
+        //收藏
+        $('.follow-action').click(function(){
+            var _id = $(this).attr('data-id');
+            if (_id == '') {
+                return false;
+            }
+            var _this = $(this);
+            var _act = _this.hasClass('icon-star2') ? 2 : 1;
+            $.ajax({
+                url:'/course/collect',
+                type:'post',
+                data:{id:_id,act:_act},
+                success:function(data){
+                    if (data == 1) {
+                        var msg = '收藏成功';
+                        _this.addClass('icon-star2');
+                    }
+                    if (data == 2) {
+                        var msg = '取消收藏成功';
+                        _this.removeClass('icon-star2');
+                    }
+                    $('.moco-tip-layer').find('span').html(msg);
+                    $('.moco-tip-layer').hide().css({"top":_this.offset().top - 65, "left":_this.offset().left}).show().delay(5000).fadeOut();;
+                }
+            });
+        });
+
+        //课程点赞
+        $('#video_zan').click(function(){
+            var _id = $(this).attr('data-id');
+            if (_id == '') {
+                return false;
+            }
+            var _this = $(this);
+            $.ajax({
+                url:'/course/videozan',
+                type:'post',
+                data:{id:_id},
+                success:function(data){
+                    alert('成功');
+                }
+            });
+        });
+    });
+</script>
+{/block}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta property="qc:admins" content="77103107776553571676375" />
+    <meta property="wb:webmaster" content="c4f857219bfae3cb" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="Keywords" content="" />
+    <meta name="Description" content="超酷的互联网、IT技术免费学习平台，创新的网络一站式学习、实践体验；服务及时贴心，内容专业、有趣易学。专注服务互联网工程师快速成为技术高手！"/>
+    <title>
+        Python入门课程介绍-慕课网
+    </title>
+    <link rel="stylesheet" href="__STATIC__/index/css/base_video.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/layer.css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/moco.min.css" type="text/css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/mocoplayer.css" type="text/css" />
+    <script charset="utf-8" src="__STATIC__/index/js/jquery.js"></script>
+</head>
+<body>
+<div id="header" class="course-detail-header">
+    <div class="cd-inner clearfix">
+        <ul class="l">
+            <li class="nv nv-goback">
+                <a href="/course/detail?d={$chapter.svl_sv_id}" class="revert l">
+                    <i class="icon icon-left">
+                    </i>
+                </a>
+            </li>
+            <li class="nv nv-menu">
+                <a href="javascript:;" class="chaptername J-chaptername" data-id="3370"
+                   style="cursor:text;">
+							<span>
+								{$video.sv_name}
+							</span>
+                    <em>
+                        {$chapter.svl_name}
+                    </em>
+                </a>
+            </li>
+        </ul>
+        <div id="login-area">
+            <ul class="header-unlogin clearfix">
+                <li class="header-signin">
+                    <a href="#" id="js-signin-btn">
+                        登录
+                    </a>
+                </li>
+                <li class="header-signup">
+                    <a href="#" id="js-signup-btn">
+                        注册
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="studyMain">
+    <div id="bgarea" class="video-con">
+        <div class="js-box-wrap">
+            <div id="J_Box" class="course-video-box">
+                <div id="video-box" class="video-wrap" style="width:100%;height:100%">
+                    <div id="video-box-mocoplayer" class="mocoplayer">
+                        <div autobuffer=""
+                             preload="auto" class="video-js vjs-default-skin videoCentered vjs-controls-enabled vjs-workinghover vjs-user-active vjs-has-started video-box-mocoplayer-hls-video-dimensions vjs-paused"
+                             id="video-box-mocoplayer-hls-video" role="region" aria-label="video player">
+                            <video onended="$('.next-box').show();" id="video-box-mocoplayer-hls-video-html5-api" class="video-js vjs-default-skin" controls preload="auto" autoplay>
+                                <source src="{$chapter.svl_video_url}" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-box J_next-box hide">
+                    <div class="next-box-inner">
+                        <div class="course-tip-layer J-next-course" data-next-src="/course/video?v={$next_chapter.svl_id}">
+                            <h2>下一节课程： {$next_chapter.svl_name}</h2>
+                            <div class="J-next-btn next-auto btn-green">
+                                下一节
+                            </div>
+                            <a href="/course/video?v={$v}" class="review-course">
+                                重新观看
+                            </a>
+                            <div id="js-ques-box">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--此处结构为练习题，视频，编程公用的侧栏-->
+
+    </div>
+</div>
+<div class="course-subcontainer clearfix">
+    <div class="course-left">
+        <ul class="course-menu course-video-menu clearfix js-course-menu" data-ower="all"
+            data-sort="last">
+            <li class="course-menu-item">
+                <a class="active" href="javascript:void(0)" id="plMenu">
+                    评论
+                </a>
+            </li>
+            <!--<li class="course-menu-item">-->
+                <!--<a href="javascript:void(0)" id="qaMenu">-->
+                    <!--问答-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li class="course-menu-item">-->
+                <!--<a href="javascript:void(0)" id="noteMenu">-->
+                    <!--笔记-->
+                <!--</a>-->
+            <!--</li>-->
+            <!-- <li class="course-menu-item"><a href="javascript:void(0)" id="wikiMenu">WIKI</a></li>
+            -->
+        </ul>
+        <div id="disArea" class="lists-container list-wrap">
+            <div id="pl-content" class="list-tab-con">
+                <div class="publish clearfix" id="discus-publish">
+                    <div class="publish-wrap publish-wrap-pl">
+                        <div class="pl-input-wrap clearfix">
+                            <a href="" class="user-head l">
+                                <img src="__STATIC__/index/images/avatar_default.png">
+                            </a>
+                            <div id="js-pl-input-fake" class="pl-input-inner l">
+										<textarea id="js-pl-textarea" class="js-placeholder" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！"></textarea>
+										<span class="num-limit">
+											<span id="js-pl-limit">
+												0
+											</span>
+											/300
+										</span>
+                            </div>
+                            <div class="pl-input-btm input-btm clearfix">
+                                <div class="verify-code l">
+                                </div>
+                                <input type="button" id="js-pl-submit" class="r course-btn" value="发表评论" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="plLoadListData">
+                    <div class="pl-container">
+                        <ul>
+                            {volist name='comments' id='vo'}
+                            <li class="pl-list clearfix">
+                                <div class="pl-list-avator">
+                                    <a href="javascript:void(0);">
+                                        <img width="40" height="40" src="http://img.mukewang.com/5333a2b70001a5a802000200-40-40.jpg"
+                                             title="小红2015">
+                                    </a>
+                                </div>
+                                <div class="pl-list-main">
+                                    <div class="pl-list-nick">
+                                        <a href="javascript:void(0);">
+                                            {$vo.username}
+                                        </a>
+                                    </div>
+                                    <div class="pl-list-content">
+                                        {$vo.content}
+                                    </div>
+                                    <div class="pl-list-btm clearfix">
+                                    <span class="pl-list-time l">
+                                        时间: {$vo.addtime}
+                                    </span>
+                                        <a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="339985">
+                                            <i class="icon-thumb-revert">
+                                            </i>
+                                            <span>
+                                                {$vo.zan}
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            {/volist}
+                        </ul>
+                    </div>
+                    <div class="page pl-list-page">
+                    </div>
+                </div>
+            </div>
+            <div id="qa-content" class="list-tab-con" style="display:none">
+                <div id="qaLoadListData">
+                </div>
+            </div>
+            <div id="note-content" class="list-tab-con" style="display:none">
+                <div id="noteLoadListData">
+                </div>
+            </div>
+            <div id="wiki-content" class="list-tab-con" style="display:none;">
+                <div id="wikiLoadListData">
+                </div>
+            </div>
+            <div id="mate-content" class="list-tab-con" style="display:none;">
+                <div id="mateLoadListData">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="course-right clearfix">
+        <div class="js-recom-box">
+        </div>
+        <div class="wendalist js-right-wenda">
+            <div class="course-right-title">
+                <h3>
+                    猿问推荐
+                </h3>
+                <a href="/wenda/?block_id=tuijian_yw" target="_blank" class="more">
+                    更多
+                </a>
+            </div>
+            <ul>
+            </ul>
+        </div>
+        <div class="articlelist js-right-article">
+            <div class="course-right-title">
+                <h3>
+                    手记推荐
+                </h3>
+                <a href="/article/?block_id=tuijian_wz" target="_blank" class="more">
+                    更多
+                </a>
+            </div>
+            <div class="course-right-content">
+            </div>
+            <ul>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="waper">
+        <div class="footerwaper clearfix">
+            <div class="followus r">
+                <a class="followus-weixin" href="javascript:;" target="_blank" title="微信">
+                    <div class="flw-weixin-box">
+                    </div>
+                </a>
+                <a class="followus-weibo" href="http://weibo.com/u/3306361973" target="_blank"
+                   title="新浪微博">
+                </a>
+                <a class="followus-qzone" href="http://user.qzone.qq.com/1059809142/"
+                   target="_blank" title="QQ空间">
+                </a>
+            </div>
+            <div class="footer_intro l">
+                <div class="footer_link">
+                    <ul>
+                        <li>
+                            <a href="http://www.imooc.com/" target="_blank">
+                                网站首页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/cooperate" target="_blank" title="企业合作">
+                                企业合作
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/job" target="_blank">
+                                人才招聘
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/contact" target="_blank">
+                                联系我们
+                            </a>
+                        </li>
+                        <!--<li><a href="/subject/html" target="_blank">专题页面</a></li>-->
+                        <li>
+                            <a href="/about/us" target="_blank">
+                                关于我们
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/recruit" target="_blank">
+                                讲师招募
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/user/feedback" target="_blank">
+                                意见反馈
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/about/friendly" target="_blank">
+                                友情链接
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>
+                    Copyright © 2017 imooc.com All Rights Reserved | 京ICP备 13046642号-2
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--积分弹出框-->
+<div class="integral-pop" id="no-credit">
+    <div class="pop-con">
+				<span class="icon-point">
+				</span>
+        <p>
+            本次提问将花费2个积分
+        </p>
+        <p>
+            你的积分不足，无法发表
+        </p>
+        <a class="integral-rule" href="/about/faq?t=3" target="_blank">
+            为什么扣积分？
+        </a>
+        <div class="ft clearfix">
+            <a href="javascript:void(0)" class="btn btn-green l cancel-cf">
+                确认
+            </a>
+            <a href="javascript:void(0)" class="btn btn-grey r cancel-cf">
+                取消
+            </a>
+        </div>
+    </div>
+</div>
+<div class="integral-pop" id="enough-credit">
+    <div class="pop-con">
+				<span class="icon-point">
+				</span>
+        <p>
+            本次提问将花费2个积分
+        </p>
+        <p>
+            继续发表请点击 "确定"
+        </p>
+        <a class="integral-rule" href="/about/faq?t=3" target="_blank">
+            为什么扣积分？
+        </a>
+        <div class="ft clearfix">
+            <a id="interal-use" href="javascript:void(0)" class="btn btn-green l">
+                确认
+            </a>
+            <a id="interal-cancel" href="javascript:void(0)" class="btn btn-grey r">
+                取消
+            </a>
+        </div>
+    </div>
+</div>
+<div id="video_mark" class="video_mark" style="display:none;">
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.next-auto').click(function(){
+            window.location.href = $('.course-tip-layer').attr('data-next-src');
+        });
+        // 评论
+        var _pl = true;
+        $('#js-pl-submit').click(function(){
+            var _content = $('#js-pl-textarea').val();
+            if (_content == '') {
+                return false;
+            }
+            if (!_pl) {
+                return false;
+            }
+            _pl = false;
+
+            var _id = "{$chapter.svl_id}";
+            var _v_id = "{$chapter.svl_sv_id}";
+
+            $.ajax({
+                url:'/course/comment',
+                type:'post',
+                data:{id:_id,v_id:_v_id,content:_content},
+                success:function(data){
+                    if (data.code == 1000) {
+                        var _html = '<li class="pl-list clearfix"><div class="pl-list-avator"><a href="javascript:void(0);"><img width="40" height="40" src="'+data.data.img+'" title="'+data.data.username+'"></a></div><div class="pl-list-main"><div class="pl-list-nick"><a href="javascript:void(0);">'+data.data.username+'</a></div><div class="pl-list-content">'+data.data.sc_content+'</div><div class="pl-list-btm clearfix"><span class="pl-list-time l">时间: '+data.data.sc_addtime+'</span><a title="赞" href="javascript:;" class="js-pl-praise list-praise r" data-id="339985"><i class="icon-thumb-revert"></i><span> 0 </span></a></div></div></li>';
+                        $('#plLoadListData').find('ul').prepend(_html).slideDown();
+                    }
+                    _pl = true;
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {$title}
+    </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <meta name="Keywords" content="{$keywords}" />
+    <meta name="Description" content="{$description}" />
+    <link rel="stylesheet" href="__STATIC__/index/css/base.css" type="text/css" />
+    <link rel="stylesheet" href="__STATIC__/index/css/moco.min.css" type="text/css" />
+    <script charset="utf-8" src="__STATIC__/index/js/jquery.js">
+    </script>
+</head>
+<body id="index">
+
+{include file="common:header" /}
+
+<div id="main" style="height: auto">
+
+    {block name="body"}{/block}
+
+</div>
+
+{block name="script"}{/block}
+
+{include file="common:footer" /}
+
+</body>
+</html>
