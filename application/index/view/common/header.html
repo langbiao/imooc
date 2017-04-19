@@ -25,6 +25,105 @@
         </ul>
         <div id="login-area">
             <ul class="header-unlogin clearfix">
+                {if condition="$is_login eq 1"}
+                <li class="set_btn user-card-box" id="header-user-card" style="margin-top: 20px;">
+                    <a id="header-avator" class="user-card-item js-header-avator" action-type="my_menu"
+                       href="javascript:void(0);" target="_self">
+                        <img width="40" height="40" src="http://img.mukewang.com/545862440001cef302200220-100-100.jpg">
+                        <i class="myspace_remind" style="display: none;">
+                        </i>
+                    <span style="display: none;">
+                        动态提醒
+                    </span>
+                    </a>
+                    <div class="g-user-card">
+                        <div class="card-inner">
+                            <div class="card-top clearfix">
+                                <a href="javascript:void(0);" class="l">
+                                    <img src="http://img.mukewang.com/545862440001cef302200220-100-100.jpg"
+                                         alt="{$user.username}">
+                                </a>
+                                <div class="card-top-right-box l">
+                                    <a href="javascript:void(0);">
+                                        <span class="name text-ellipsis">
+                                            {$user.username}
+                                        </span>
+                                    </a>
+                                    <div class="meta">
+                                        <a href="javascript:void(0);">
+                                            经验
+                                            <b id="js-user-mp">
+                                                102
+                                            </b>
+                                        </a>
+                                        <a href="javascript:void(0);">
+                                            积分
+                                            <b id="js-user-credit">
+                                                1
+                                            </b>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-center-box">
+                                <ul class="clearfix">
+                                    <li class="l">
+                                        <a href="javascript:void(0);" target="_blank">
+							<span class="user-center-icon icon-tick">
+							</span>
+                                            我的课程
+                                        </a>
+                                    </li>
+                                    <li class="l">
+                                        <a href="http://order.imooc.com/myorder" target="_blank">
+							<span class="user-center-icon icon-receipt">
+							</span>
+                                            订单中心
+                                        </a>
+                                        <i id="js-usercard-coupon-icon" style="display: none;">
+                                        </i>
+                                    </li>
+                                    <li class="l">
+                                        <a href="/mall/index" target="_blank">
+							<span class="user-center-icon icon-score_shop">
+							</span>
+                                            积分商城
+                                        </a>
+                                    </li>
+                                    <li class="l">
+                                        <a href="/user/setbindsns" target="_blank">
+							<span class="user-center-icon icon-set">
+							</span>
+                                            个人设置
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-history">
+                            <span class="history-item">
+                                <span class="tit text-ellipsis">
+                                    jQuery基础 (一)—样式篇
+                                </span>
+                                <span class="media-name text-ellipsis">
+                                    1-1课程介绍
+                                </span>
+                                <i class="icon-clock">
+                                </i>
+                                <a href="http://www.imooc.com/video/11224" class="continue" title="课程介绍
+                                1-1课程介绍">
+                                    继续
+                                </a>
+                            </span>
+                            </div>
+                            <div class="card-sets clearfix">
+                                <a href="/login/logout" class="r">
+                                    安全退出
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {else /}
                 <li class="header-signin">
                     <a href="#" id="js-signin-btn">
                         登录
@@ -35,6 +134,7 @@
                         注册
                     </a>
                 </li>
+                {/if}
             </ul>
         </div>
         <div class='search-warp clearfix' style='min-width: 32px; height: 60px;'>
@@ -78,6 +178,11 @@
                 }
                 window.location.href = '/course/list?keyword='+_keyword;
             }
+        });
+        $('#header-user-card').mouseenter(function(){
+            $(this).addClass('hover');
+        }).mouseleave(function(){
+            $(this).removeClass('hover');
         });
     });
 </script>

@@ -52,16 +52,16 @@
                     <p class="rlf-tip-globle color-red" id="signin-globle-error">
                     </p>
                     <div class="rlf-group pr">
-                        <input type="text" value="" maxlength="37" name="email" data-validate="require-email"
+                        <input id="login-username" type="text" value="" maxlength="37" name="username" data-validate="require-email"
                                autocomplete="off" class="xa-emailOrPhone ipt ipt-email js-own-name" placeholder="请输入登录邮箱/手机号">
-                        <p class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号">
+                        <p id="login-username-tips" class="rlf-tip-wrap errorHint color-red" data-error-hint="请输入正确的邮箱或手机号">
                         </p>
                     </div>
                     <div class="rlf-group  pr">
-                        <input type="password" name="password" data-validate="require-password"
+                        <input id="login-password" type="password" name="password" data-validate="require-password"
                                class="ipt ipt-pwd js-loginPassword js-pass-pwd" placeholder="6-16位密码，区分大小写，不能用空格"
                                maxlength="16" autocomplete="off">
-                        <p class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入6-16位密码，区分大小写，不能使用空格！">
+                        <p id="login-password-tips" class="rlf-tip-wrap errorHint color-red " data-error-hint="请输入6-16位密码，区分大小写，不能使用空格！">
                         </p>
                     </div>
                     <div class="rlf-group clearfix form-control js-verify-row" style="display: none;">
@@ -79,7 +79,7 @@
                             <input type="checkbox" checked="checked" class="auto-cbx" id="auto-signin">
                             下次自动登录
                         </label>
-                        <a href="/user/newforgot" class="rlf-forget r" target="_blank" hidefocus="true">
+                        <a href="#" class="rlf-forget r" target="_blank" hidefocus="true">
                             忘记密码
                         </a>
                     </div>
@@ -165,6 +165,52 @@
             $('.modal-backdrop').hide();
             $('#signin').hide();
             $('#signup').hide();
+        });
+
+        // 登录
+        $('.xa-login').click(function(){
+            var _username = $.trim($('#login-username').val());
+            var _password = $.trim($('#login-password').val());
+            if (_username =='') {
+                $('#login-username-tips').html($('#login-username-tips').attr('data-error-hint'));
+                return false;
+            }
+            if (_username.indexOf("@") != -1 && !/^[a-z\d]+(\.[a-z\d]+)*\@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/.test(_username)) {
+                $('#login-username-tips').html($('#login-username-tips').attr('data-error-hint'));
+                return false;
+            }
+            if (_username.indexOf("@") == -1 && !(/^1[3578]\d{9}$/.test(_username))) {
+                $('#login-username-tips').html($('#login-username-tips').attr('data-error-hint'));
+                return false;
+            }
+            $('#login-username-tips').html('');
+            if (_password.length < 6) {
+                $('#login-password-tips').html($('#login-password-tips').attr('data-error-hint'));
+                return false;
+            }
+            $('#login-password-tips').html('');
+
+            $.ajax({
+                url:'/login',
+                data:{username:_username, password:_password},
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    if (data.code == 1001) {
+                        $('#login-username-tips').html(data.msg1);
+                        $('#login-password-tips').html(data.msg2);
+                        return false;
+                    }
+                    if (data.code == 1002 || data.code == 1003) {
+                        $('#login-username-tips').html(data.msg);
+                        return false;
+                    }
+                    window.location.reload();
+                },
+                error:function(){
+                    $('#login-username-tips').html('网络错误，请稍后重试');
+                }
+            });
         });
     });
 </script>
