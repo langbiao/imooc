@@ -5,12 +5,9 @@ use think\Db;
 
 class Course extends Base
 {
-    private $uid = 0;
     public function _initialize()
     {
         parent::_initialize();
-
-        $this->uid = 0;
     }
 
     // 课程列表页
@@ -105,7 +102,7 @@ class Course extends Base
         Db::name('study_video')->where('sv_id', '=', $d)->setInc('sv_click');
 
         // 是否收藏
-        $is_collect = Db::name('study_collect')->where('sc_sv_id', '=', $d)->where('sc_uid', '=', $this->uid)->find();
+        $is_collect = Db::name('study_collect')->where('sc_sv_id', '=', $d)->where('sc_uid', '=', $this->uid)->group('sc_sv_id')->find();
 
         // 视频数据
         $video = Db::name('study_video')->where('sv_id', '=', $d)->find();
@@ -129,11 +126,13 @@ class Course extends Base
                 $data[$value['svl_id']]['id'] = $value['svl_id'];
                 $data[$value['svl_id']]['name'] = $value['svl_name'];
                 $data[$value['svl_id']]['title'] = $value['svl_title'];
+                $data[$value['svl_id']]['chapter_no'] = $value['svl_chapter_no'];
 
                 foreach ($chapter_sub as $v) {
                     if ($v['svl_pid'] == $value['svl_id']) {
                         $tmp['id'] = $v['svl_id'];
                         $tmp['name'] = $v['svl_name'];
+                        $tmp['chapter_no'] = $v['svl_chapter_no'];
                         $data[$value['svl_id']]['child'][] = $tmp;
                     }
                 }
@@ -213,6 +212,16 @@ class Course extends Base
         $chapter = Db::name('study_video_list')->where('svl_id', '=', $v)->find();
         // 课程数据
         $video = Db::name('study_video')->where('sv_id', '=', $chapter['svl_sv_id'])->find();
+
+        // 记录学习观看数据
+        $data['sh_uid'] = $this->uid;
+        $data['sh_sv_id'] = $chapter['svl_sv_id'];
+        $data['sh_svl_id'] = $v;
+        $data['sh_addtime'] = date('Y-m-d H:i:s', time());
+        $res = Db::name('study_history')->where('sh_uid', '=', $this->uid)->where('sh_sv_id', '=', $chapter['svl_sv_id'])->where('sh_svl_id', '=', $v)->find();
+        if (!$res) {
+            Db::name('study_history')->insert($data);
+        }
 
         // 评论数据
         $comment = Db::name('study_comment')->where('sc_svl_id', '=', $chapter['svl_id'])->order('sc_addtime', 'desc')->select();

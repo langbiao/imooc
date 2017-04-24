@@ -68,7 +68,7 @@
                             <div class="user-center-box">
                                 <ul class="clearfix">
                                     <li class="l">
-                                        <a href="javascript:void(0);" target="_blank">
+                                        <a href="/user/courses" target="_blank">
 							<span class="user-center-icon icon-tick">
 							</span>
                                             我的课程
@@ -102,15 +102,14 @@
                             <div class="card-history">
                             <span class="history-item">
                                 <span class="tit text-ellipsis">
-                                    jQuery基础 (一)—样式篇
+                                    {$his_video.sv_name}
                                 </span>
                                 <span class="media-name text-ellipsis">
-                                    1-1课程介绍
+                                    {$his_chapter.svl_chapter_no} {$his_chapter.svl_name}
                                 </span>
                                 <i class="icon-clock">
                                 </i>
-                                <a href="http://www.imooc.com/video/11224" class="continue" title="课程介绍
-                                1-1课程介绍">
+                                <a href="/course/video?v={$his_chapter.svl_id}" class="continue" title="{$his_chapter.svl_chapter_no} {$his_chapter.svl_name}">
                                     继续
                                 </a>
                             </span>
