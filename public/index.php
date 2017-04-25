@@ -11,6 +11,16 @@
 
 // [ 应用入口文件 ]
 session_start();
+
+// 检测是否是新安装
+if(file_exists("../public/install") && !file_exists("../public/install/install.lock")){
+    // 组装安装url
+    echo $url=$_SERVER['HTTP_HOST'].trim($_SERVER['SCRIPT_NAME'],'index.php').'install/index.php';
+    // 使用http://域名方式访问；避免./Public/install 路径方式的兼容性和其他出错问题
+    header("Location:http://$url");
+    die;
+}
+
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 define('BIND_MODULE','index');
